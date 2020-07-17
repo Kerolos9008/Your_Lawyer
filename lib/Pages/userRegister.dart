@@ -17,9 +17,12 @@ class UserRegisterPageState extends State<UserRegisterPage> {
   bool loading = false;
 
   // text field state
+  String firstName = '';
+  String lastName = '';
+  String phoneNumber = '';
   String email = '';
   String password = '';
-
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -76,7 +79,7 @@ class UserRegisterPageState extends State<UserRegisterPage> {
                     ),
                   ),
                   validator: (val) =>
-                      val.length < 6 ? 'Enter a password 6+ chars long' : null,
+                      val.length < 8 ? 'Enter a password 8+ chars long' : null,
                   onChanged: (val) {
                     setState(() => password = val);
                   },
@@ -101,7 +104,7 @@ class UserRegisterPageState extends State<UserRegisterPage> {
                         loading = false;
                         if (result == null) {
                           setState(() {
-                            error = 'Wrong email or password';
+                            error = 'this email already exists';
                           });
                         }
                       }
