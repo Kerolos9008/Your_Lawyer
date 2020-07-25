@@ -11,11 +11,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       value: UserAuthService().user,
       child: MaterialApp(
+        navigatorKey: navigatorKey,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.brown[400],
+          accentColor: Colors.pink,
+        ),
         home: SplashScreenPage(),
       ),
     );

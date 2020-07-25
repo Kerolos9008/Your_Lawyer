@@ -1,8 +1,9 @@
+import 'package:Your_Lawyer/Pages/userHome.dart';
+
 import '../Services/userAuth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import 'userRegister.dart';
 
 class UserLoginPage extends StatefulWidget {
@@ -27,7 +28,6 @@ class UserLoginPageState extends State<UserLoginPage> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: Text('Login'),
         actions: <Widget>[
@@ -88,7 +88,10 @@ class UserLoginPageState extends State<UserLoginPage> {
                 },
               ),
               SizedBox(height: 20.0),
-              RaisedButton(
+              Container(
+                height: 35,
+                width: 90,
+                child: RaisedButton(
                   color: Colors.pink[400],
                   child: loading
                       ? SpinKitChasingDots(
@@ -96,26 +99,41 @@ class UserLoginPageState extends State<UserLoginPage> {
                           size: 14.0,
                         )
                       : Text(
-                          'Login In',
+                          'Log in',
                           style: TextStyle(color: Colors.white),
                         ),
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      loading = true;
+                      setState(() {
+                        loading = true;
+                      });
                       dynamic result = await _auth.signInWithEmailAndPassword(
                           email, password);
-                      loading = false;
+                      setState(() {
+                        loading = false;
+                      });
                       if (result == null) {
                         setState(() {
                           error = 'Wrong email or password';
                         });
+                      } else {
+                        error = '';
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserHomePage()));
                       }
                     }
-                  }),
+                  },
+                ),
+              ),
               SizedBox(height: 12.0),
               Text(
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
+              ),
+              SizedBox(
+                height: 5,
               ),
             ],
           ),

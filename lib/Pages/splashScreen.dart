@@ -34,6 +34,7 @@ class SplashScreenState extends State<SplashScreenPage>{
   }
 
   void checkAuth(){
+    print("user in chechAuth = " + user.toString());
     if (user == null){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserLoginPage()));
     } else {

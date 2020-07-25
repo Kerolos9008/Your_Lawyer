@@ -2,7 +2,7 @@ class CaseType {
 
   String caseTypeName;
 
-  List<CaseType> getCaseTypes() {
+  static List<CaseType> getCaseTypes() {
     List<CaseType> caseTypes = List<CaseType>();
     CaseType caseTypeModel = CaseType();
 

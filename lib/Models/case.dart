@@ -8,10 +8,10 @@ class Case {
   final String year;
   final String caseType;
   final String information;
-  Lawyer assignedLawyerId;
+  Lawyer assignedLawyer;
   final User owner;
   bool assigned;
   String state;
 
-  Case({this.caseId,this.caseNumber,this.year, this.assignedLawyerId, this.caseType, this.information, this.owner, this.assigned, this.state});
+  Case({this.caseId,this.caseNumber,this.year, this.assignedLawyer, this.caseType, this.information, this.owner, this.assigned, this.state});
 }
